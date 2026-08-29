@@ -1,0 +1,565 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+  <meta name="theme-color" content="#090b12" />
+  <meta name="description" content="赵金星送给王希羽的一份生日祝福。" />
+  <meta property="og:title" content="致王希羽 · 生日快乐" />
+  <meta property="og:description" content="有一份来自赵金星的生日祝福，等你亲自启封。" />
+  <title>致王希羽 · 生辰星礼</title>
+  <style>
+    :root{
+      --bg:#080a10;
+      --bg2:#10131d;
+      --gold:#d9bb7a;
+      --gold2:#f3dfae;
+      --ivory:#f7f0df;
+      --muted:#aaa28f;
+      --line:rgba(218,188,122,.25);
+      --glass:rgba(255,255,255,.045);
+      --shadow:0 32px 90px rgba(0,0,0,.48);
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth;background:var(--bg)}
+    body{
+      margin:0;min-height:100vh;color:var(--ivory);
+      font-family:"Songti SC","STSong","Noto Serif CJK SC","Source Han Serif SC",
+                  "PingFang SC","Microsoft YaHei",serif;
+      background:
+        radial-gradient(circle at 50% -10%, rgba(196,160,91,.14), transparent 36%),
+        radial-gradient(circle at 10% 45%, rgba(90,93,140,.12), transparent 30%),
+        linear-gradient(180deg,#080a10 0%,#0d1018 45%,#080a10 100%);
+      overflow-x:hidden;
+    }
+    button,input,textarea{font:inherit}
+    button{color:inherit}
+    a{color:inherit}
+
+    /* ambient */
+    .noise,.vignette,.stars{position:fixed;inset:0;pointer-events:none;z-index:0}
+    .noise{
+      opacity:.13;
+      background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.35'/%3E%3C/svg%3E");
+      mix-blend-mode:soft-light;
+    }
+    .vignette{box-shadow:inset 0 0 180px 38px rgba(0,0,0,.72)}
+    .star{
+      position:absolute;width:2px;height:2px;border-radius:50%;background:#f7e9bd;
+      box-shadow:0 0 10px rgba(247,233,189,.85);
+      animation:twinkle 3.5s ease-in-out infinite;
+    }
+    @keyframes twinkle{0%,100%{opacity:.18;transform:scale(.8)}50%{opacity:.95;transform:scale(1.6)}}
+
+    /* cover */
+    .cover{
+      position:fixed;z-index:50;inset:0;display:grid;place-items:center;padding:24px;
+      background:
+        radial-gradient(circle at 50% 35%, rgba(208,174,100,.13), transparent 30%),
+        linear-gradient(180deg,#06070b,#0b0e15);
+      transition:opacity .9s ease,visibility .9s ease;
+    }
+    .cover.hidden{opacity:0;visibility:hidden}
+    .seal-card{
+      width:min(540px,92vw);min-height:560px;border:1px solid rgba(217,187,122,.32);
+      background:linear-gradient(160deg,rgba(255,255,255,.045),rgba(255,255,255,.012));
+      box-shadow:var(--shadow), inset 0 0 0 1px rgba(255,255,255,.025);
+      display:flex;flex-direction:column;align-items:center;justify-content:center;
+      text-align:center;padding:54px 36px;position:relative;overflow:hidden;
+    }
+    .seal-card:before,.seal-card:after{
+      content:"";position:absolute;width:180px;height:180px;border:1px solid rgba(217,187,122,.15);
+      transform:rotate(45deg)
+    }
+    .seal-card:before{top:-115px;left:-115px}
+    .seal-card:after{right:-115px;bottom:-115px}
+    .monogram{font:600 13px/1.2 Georgia,serif;letter-spacing:.45em;color:var(--gold);margin-left:.45em}
+    .cover-title{
+      margin:28px 0 12px;font-size:clamp(34px,7vw,58px);font-weight:500;
+      letter-spacing:.16em;color:#f5edd9;text-indent:.16em
+    }
+    .cover-sub{color:var(--muted);font-size:14px;letter-spacing:.18em;text-indent:.18em}
+    .seal{
+      margin:42px 0 28px;width:82px;height:82px;border-radius:50%;
+      border:1px solid #a88848;display:grid;place-items:center;
+      background:radial-gradient(circle,#caa962 0 18%,#9a793d 19% 22%,#261f18 23% 100%);
+      box-shadow:0 10px 35px rgba(0,0,0,.55),inset 0 0 18px rgba(255,224,154,.23);
+      font-family:Georgia,serif;color:#ecdcae;letter-spacing:.05em;transform:rotate(-8deg);
+    }
+    .open-btn,.ghost-btn,.gold-btn{
+      border:1px solid rgba(217,187,122,.42);background:transparent;padding:13px 24px;
+      cursor:pointer;letter-spacing:.12em;transition:.25s ease;
+    }
+    .open-btn:hover,.ghost-btn:hover,.gold-btn:hover{background:rgba(217,187,122,.1);transform:translateY(-2px)}
+    .open-btn{min-width:190px;color:var(--gold2)}
+
+    /* layout */
+    .page{position:relative;z-index:2;opacity:0;transition:opacity 1s ease}
+    body.opened .page{opacity:1}
+    .section{min-height:100vh;padding:90px 22px;display:grid;place-items:center;position:relative}
+    .inner{width:min(1080px,100%);margin:auto}
+    .hairline{height:1px;background:linear-gradient(90deg,transparent,var(--line),transparent);margin:32px 0}
+    .eyebrow{
+      font:600 12px/1.2 Georgia,serif;letter-spacing:.34em;color:var(--gold);
+      text-transform:uppercase;margin-bottom:24px
+    }
+
+    /* hero */
+    .hero{text-align:center;overflow:hidden}
+    .halo{
+      position:absolute;width:min(72vw,720px);aspect-ratio:1;border-radius:50%;
+      border:1px solid rgba(217,187,122,.08);
+      box-shadow:inset 0 0 90px rgba(217,187,122,.035),0 0 90px rgba(217,187,122,.035);
+      animation:rotateHalo 24s linear infinite;
+    }
+    .halo:before,.halo:after{content:"";position:absolute;inset:8%;border:1px solid rgba(217,187,122,.08);border-radius:50%}
+    .halo:after{inset:21%;border-style:dashed}
+    @keyframes rotateHalo{to{transform:rotate(360deg)}}
+    .hero-content{position:relative;z-index:2}
+    .ornament{font-size:22px;color:var(--gold);letter-spacing:.5em;text-indent:.5em;opacity:.88}
+    .name-art{
+      margin:16px 0 4px;
+      font-size:clamp(66px,15vw,152px);font-weight:500;line-height:1;
+      letter-spacing:.12em;text-indent:.12em;
+      background:linear-gradient(105deg,#8d7137 0%,#f6e4b8 30%,#bc9550 55%,#fff1c9 72%,#a8823f 100%);
+      -webkit-background-clip:text;background-clip:text;color:transparent;
+      filter:drop-shadow(0 10px 28px rgba(208,174,100,.14));
+    }
+    .hero-en{
+      font:500 clamp(15px,2.2vw,22px)/1.3 Georgia,serif;letter-spacing:.48em;text-indent:.48em;
+      color:#d9caa5;margin-top:15px
+    }
+    .hero-copy{max-width:660px;margin:34px auto 0;color:#c8bfaa;font-size:clamp(16px,2vw,20px);line-height:2.2;letter-spacing:.06em}
+    .scroll-cue{position:absolute;bottom:38px;left:50%;transform:translateX(-50%);color:#766e5d;font-size:11px;letter-spacing:.22em}
+    .scroll-cue:after{content:"";display:block;width:1px;height:46px;background:linear-gradient(var(--gold),transparent);margin:13px auto 0;animation:cue 1.8s ease-in-out infinite}
+    @keyframes cue{0%,100%{opacity:.3;transform:scaleY(.6);transform-origin:top}50%{opacity:1;transform:scaleY(1)}}
+
+    /* message */
+    .message-section{min-height:auto;padding-top:130px;padding-bottom:130px}
+    .message-grid{display:grid;grid-template-columns:.78fr 1.22fr;gap:70px;align-items:start}
+    .side-title{font-size:clamp(34px,5vw,64px);font-weight:500;line-height:1.3;margin:0}
+    .side-title span{color:var(--gold)}
+    .letter{
+      border-left:1px solid var(--line);padding-left:clamp(26px,5vw,58px);
+      color:#e4dcc9;font-size:clamp(16px,2.1vw,20px);line-height:2.15;letter-spacing:.04em;
+    }
+    .letter p{margin:0 0 1.45em}
+    .signature{margin-top:38px;text-align:right;color:var(--gold2);font-size:18px}
+    .signature small{display:block;color:#817967;font:12px/1.8 Georgia,serif;letter-spacing:.18em;margin-top:6px}
+
+    /* wish cards */
+    .wishes{min-height:auto;padding-top:80px;padding-bottom:120px}
+    .center{text-align:center}
+    .section-title{font-size:clamp(34px,5vw,62px);font-weight:500;letter-spacing:.08em;margin:0}
+    .section-desc{color:#918a7a;max-width:560px;margin:18px auto 0;line-height:1.9}
+    .wish-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:54px}
+    .wish-card{
+      min-height:300px;padding:34px 26px;border:1px solid rgba(217,187,122,.18);
+      background:linear-gradient(160deg,rgba(255,255,255,.035),rgba(255,255,255,.012));
+      position:relative;overflow:hidden;transition:.35s ease;
+    }
+    .wish-card:hover{transform:translateY(-8px);border-color:rgba(217,187,122,.38);background:rgba(217,187,122,.05)}
+    .wish-card:before{content:"";position:absolute;inset:auto -40px -60px auto;width:120px;height:120px;border:1px solid rgba(217,187,122,.12);border-radius:50%}
+    .wish-num{font:12px/1 Georgia,serif;color:#766039;letter-spacing:.16em}
+    .wish-icon{font-size:26px;color:var(--gold);margin:38px 0 22px}
+    .wish-card h3{font-size:23px;font-weight:500;letter-spacing:.12em;margin:0 0 15px}
+    .wish-card p{margin:0;color:#aaa18e;line-height:1.9;font-size:14px}
+
+    /* interactive wish */
+    .ritual{min-height:90vh}
+    .ritual-box{
+      width:min(820px,100%);padding:70px 30px;text-align:center;border:1px solid rgba(217,187,122,.2);
+      background:radial-gradient(circle at 50% 35%,rgba(217,187,122,.08),transparent 35%),rgba(255,255,255,.018);
+      box-shadow:var(--shadow);position:relative;overflow:hidden;
+    }
+    .candle{
+      width:68px;height:128px;margin:28px auto 22px;position:relative;
+      background:linear-gradient(90deg,#6d5630,#d8bd80 45%,#8d6b32);
+      box-shadow:0 12px 34px rgba(0,0,0,.35)
+    }
+    .candle:after{content:"";position:absolute;left:50%;top:-14px;width:2px;height:18px;background:#251c11}
+    .flame{
+      position:absolute;left:50%;top:-51px;width:25px;height:42px;
+      transform:translateX(-50%) rotate(45deg);border-radius:50% 50% 45% 50%;
+      background:radial-gradient(circle at 65% 65%,#fff5c7 0 12%,#f9b64e 36%,#bf6321 70%);
+      box-shadow:0 0 28px #f0b65e,0 0 70px rgba(240,182,94,.48);
+      animation:flicker 1.2s ease-in-out infinite;
+      transition:.55s ease;
+    }
+    @keyframes flicker{0%,100%{transform:translateX(-50%) rotate(43deg) scale(.96)}50%{transform:translateX(-50%) rotate(48deg) scale(1.05)}}
+    .flame.out{opacity:0;transform:translateX(-50%) translateY(-10px) rotate(45deg) scale(.1)}
+    .ritual-copy{color:#aaa18e;line-height:1.9;margin:0 auto 28px;max-width:540px}
+    .gold-btn{background:linear-gradient(105deg,#8d7137,#e8ce91,#9a793d);color:#101017;border:0;font-weight:700;min-width:210px}
+    .wish-result{height:30px;margin-top:22px;color:var(--gold2);letter-spacing:.12em;opacity:0;transition:.8s}
+    .wish-result.show{opacity:1}
+
+    /* footer */
+    .finale{min-height:86vh;text-align:center}
+    .finale-name{font-size:clamp(48px,10vw,108px);font-weight:500;letter-spacing:.14em;text-indent:.14em;margin:20px 0;background:linear-gradient(90deg,#b28b43,#f8e8bd,#9d7936);-webkit-background-clip:text;background-clip:text;color:transparent}
+    .finale p{color:#aaa28f;line-height:2;letter-spacing:.08em}
+    .toolbar{display:flex;gap:10px;flex-wrap:wrap;justify-content:center;margin-top:36px}
+    .ghost-btn{font-size:13px;color:#d9ccac;padding:12px 17px}
+    .credit{margin-top:54px;color:#5f594e;font-size:11px;letter-spacing:.18em}
+
+    /* qr modal */
+    .modal{
+      position:fixed;z-index:70;inset:0;background:rgba(2,3,6,.82);backdrop-filter:blur(12px);
+      display:grid;place-items:center;padding:20px;opacity:0;visibility:hidden;transition:.25s;
+    }
+    .modal.show{opacity:1;visibility:visible}
+    .modal-card{
+      width:min(480px,94vw);background:#11141c;border:1px solid rgba(217,187,122,.3);
+      padding:34px;text-align:center;box-shadow:var(--shadow);position:relative;
+    }
+    .close{position:absolute;right:16px;top:12px;border:0;background:none;font-size:26px;cursor:pointer;color:#8d8678}
+    #qrcode{min-height:244px;display:grid;place-items:center;margin:22px auto 14px}
+    #qrcode canvas,#qrcode img{background:white;padding:12px}
+    .qr-title{font-size:22px;letter-spacing:.12em}
+    .qr-note{color:#857e70;font-size:12px;line-height:1.8;word-break:break-all;margin:10px auto 18px}
+    .modal-actions{display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
+
+    /* fireworks */
+    .firework-layer{position:fixed;z-index:40;inset:0;pointer-events:none;overflow:hidden}
+    .spark{
+      position:absolute;width:5px;height:5px;border-radius:50%;
+      background:#f3d79c;box-shadow:0 0 12px currentColor;
+      animation:spark 1.25s ease-out forwards;
+    }
+    @keyframes spark{
+      from{transform:translate(0,0) scale(1);opacity:1}
+      to{transform:translate(var(--dx),var(--dy)) scale(.15);opacity:0}
+    }
+
+    /* music button */
+    .music-fab{
+      position:fixed;z-index:20;right:18px;bottom:18px;width:46px;height:46px;border-radius:50%;
+      border:1px solid rgba(217,187,122,.35);background:rgba(8,10,16,.72);
+      backdrop-filter:blur(10px);display:grid;place-items:center;cursor:pointer;color:var(--gold)
+    }
+    .music-fab.playing{animation:pulse 1.8s ease-in-out infinite}
+    @keyframes pulse{50%{box-shadow:0 0 0 8px rgba(217,187,122,.07),0 0 28px rgba(217,187,122,.17)}}
+
+    @media (max-width:900px){
+      .message-grid{grid-template-columns:1fr;gap:36px}
+      .letter{border-left:0;border-top:1px solid var(--line);padding:34px 0 0}
+      .wish-grid{grid-template-columns:1fr 1fr}
+    }
+    @media (max-width:560px){
+      .section{padding-left:18px;padding-right:18px}
+      .seal-card{min-height:520px;padding:42px 24px}
+      .name-art{font-size:clamp(62px,23vw,112px)}
+      .hero-en{letter-spacing:.24em;text-indent:.24em}
+      .hero-copy{font-size:15px}
+      .wish-grid{grid-template-columns:1fr}
+      .wish-card{min-height:230px}
+      .ritual-box{padding:55px 20px}
+    }
+    @media (prefers-reduced-motion:reduce){
+      *,*:before,*:after{animation-duration:.001ms!important;animation-iteration-count:1!important;scroll-behavior:auto!important}
+    }
+  </style>
+</head>
+<body>
+  <div class="noise"></div>
+  <div class="vignette"></div>
+  <div class="stars" id="stars"></div>
+  <div class="firework-layer" id="fireworks"></div>
+
+  <div class="cover" id="cover">
+    <div class="seal-card">
+      <div class="monogram">JINXING · X I Y U</div>
+      <h1 class="cover-title">一封生辰星礼</h1>
+      <div class="cover-sub">TO · 王希羽</div>
+      <div class="seal">JX<br>✦<br>XY</div>
+      <button class="open-btn" id="openBtn">启封这份祝福</button>
+    </div>
+  </div>
+
+  <main class="page">
+    <section class="section hero" id="home">
+      <div class="halo" aria-hidden="true"></div>
+      <div class="hero-content">
+        <div class="eyebrow">A BIRTHDAY LETTER · 2026</div>
+        <div class="ornament">✦ 𓂃 ✦</div>
+        <div class="name-art">王希羽</div>
+        <div class="hero-en">HAPPY BIRTHDAY</div>
+        <div class="hairline"></div>
+        <p class="hero-copy">
+          愿今天所有的光，都恰好落在你身上。<br>
+          愿新一岁的故事，温柔、热烈，也足够闪耀。
+        </p>
+      </div>
+      <div class="scroll-cue">SCROLL TO READ</div>
+    </section>
+
+    <section class="section message-section">
+      <div class="inner message-grid">
+        <div>
+          <div class="eyebrow">LETTER · FOR YOU</div>
+          <h2 class="side-title">有些祝福，<br>值得<span>郑重</span>一点。</h2>
+        </div>
+        <article class="letter">
+          <p>王希羽，生日快乐。</p>
+          <p>
+            希望新的一岁，你依然拥有选择喜欢生活的勇气，也拥有被生活认真偏爱的幸运。
+            愿每一份努力都有回声，每一个期待都有归期，每一次出发都离想去的地方更近一点。
+          </p>
+          <p>
+            愿你见过热烈，也保有从容；走过忙碌，也不忘欣赏沿途。
+            希望你的快乐不止生日这一天，而是散落在往后每一个普通却值得纪念的日子里。
+          </p>
+          <p>
+            星光或许遥远，但祝福可以很近。今天，就把所有关于美好、自由、顺遂与惊喜的词，
+            都送给你。
+          </p>
+          <div class="signature">
+            —— 赵金星
+            <small>WITH MY BEST WISHES</small>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="section wishes">
+      <div class="inner">
+        <div class="center">
+          <div class="eyebrow">FOUR WISHES</div>
+          <h2 class="section-title">赠你四愿</h2>
+          <p class="section-desc">不写宏大的愿望，只愿每一件与你有关的小事，都慢慢变成喜欢的模样。</p>
+        </div>
+        <div class="wish-grid">
+          <div class="wish-card">
+            <div class="wish-num">01 · LIGHT</div>
+            <div class="wish-icon">✦</div>
+            <h3>有光</h3>
+            <p>愿你心里始终有光，面对未知时，依然相信下一站值得期待。</p>
+          </div>
+          <div class="wish-card">
+            <div class="wish-num">02 · FREEDOM</div>
+            <div class="wish-icon">𓂃</div>
+            <h3>自由</h3>
+            <p>愿你有选择方向的自由，也有拒绝不喜欢之事的底气。</p>
+          </div>
+          <div class="wish-card">
+            <div class="wish-num">03 · LUCK</div>
+            <div class="wish-icon">◇</div>
+            <h3>好运</h3>
+            <p>愿所有恰到好处的巧合，都悄悄成为生活送给你的礼物。</p>
+          </div>
+          <div class="wish-card">
+            <div class="wish-num">04 · LOVE</div>
+            <div class="wish-icon">∞</div>
+            <h3>被爱</h3>
+            <p>愿你被真诚珍惜，也永远有能力去拥抱自己真正热爱的生活。</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section ritual">
+      <div class="ritual-box">
+        <div class="eyebrow">MAKE A WISH</div>
+        <h2 class="section-title">这一刻，留给你的愿望</h2>
+        <div class="candle">
+          <div class="flame" id="flame"></div>
+        </div>
+        <p class="ritual-copy">
+          在心里默念一个愿望，然后按下按钮。<br>
+          不必告诉任何人——愿它在未来某一天，悄悄实现。
+        </p>
+        <button class="gold-btn" id="wishBtn">许愿 · 吹灭蜡烛</button>
+        <div class="wish-result" id="wishResult">愿望已被星光收藏 ✦</div>
+      </div>
+    </section>
+
+    <section class="section finale">
+      <div class="inner">
+        <div class="eyebrow">ON THIS SPECIAL DAY</div>
+        <p>谨以这份小小的仪式感，祝你</p>
+        <div class="finale-name">生日快乐</div>
+        <p>王希羽，愿你岁岁常欢愉，年年皆胜意。</p>
+        <div class="hairline"></div>
+        <p>来自 <strong style="color:var(--gold2);font-weight:500">赵金星</strong> 的生日祝福</p>
+        <div class="toolbar">
+          <button class="ghost-btn" id="fireBtn">✦ 再看一次烟花</button>
+          <button class="ghost-btn" id="shareBtn">↗ 分享这份祝福</button>
+          <button class="ghost-btn" id="qrBtn">▦ 生成永久二维码</button>
+        </div>
+        <div class="credit">JINXING FOR XIYU · MADE WITH WARM WISHES</div>
+      </div>
+    </section>
+  </main>
+
+  <button class="music-fab" id="musicBtn" aria-label="播放或暂停音乐">♫</button>
+
+  <div class="modal" id="qrModal">
+    <div class="modal-card">
+      <button class="close" id="closeQr" aria-label="关闭">×</button>
+      <div class="eyebrow">PRIVATE BIRTHDAY LINK</div>
+      <div class="qr-title">扫码进入这份祝福</div>
+      <div id="qrcode"></div>
+      <div class="qr-note" id="qrText"></div>
+      <div class="modal-actions">
+        <button class="ghost-btn" id="downloadQr">保存二维码 PNG</button>
+        <button class="ghost-btn" id="copyLink">复制网页链接</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+  <script>
+    const $ = s => document.querySelector(s);
+    const cover = $("#cover");
+
+    // Elegant star field
+    const stars = $("#stars");
+    for(let i=0;i<86;i++){
+      const s=document.createElement("i");
+      s.className="star";
+      s.style.left=Math.random()*100+"%";
+      s.style.top=Math.random()*100+"%";
+      const z=.6+Math.random()*1.5;
+      s.style.transform=`scale(${z})`;
+      s.style.animationDelay=(-Math.random()*4)+"s";
+      s.style.animationDuration=(2.4+Math.random()*4)+"s";
+      stars.appendChild(s);
+    }
+
+    // Fireworks
+    function burst(x = innerWidth*(.2+Math.random()*.6), y = innerHeight*(.18+Math.random()*.42), count=34){
+      const layer=$("#fireworks");
+      const palette=["#f3d79c","#fff1c9","#ba9450","#e8c98c"];
+      for(let i=0;i<count;i++){
+        const p=document.createElement("i");
+        p.className="spark";
+        const a=Math.PI*2*i/count + Math.random()*.18;
+        const d=70+Math.random()*170;
+        p.style.left=x+"px"; p.style.top=y+"px";
+        p.style.setProperty("--dx", Math.cos(a)*d+"px");
+        p.style.setProperty("--dy", Math.sin(a)*d+"px");
+        p.style.color=palette[Math.floor(Math.random()*palette.length)];
+        p.style.background="currentColor";
+        p.style.animationDelay=(Math.random()*.12)+"s";
+        layer.appendChild(p);
+        setTimeout(()=>p.remove(),1600);
+      }
+    }
+    function fireworks(){
+      burst(innerWidth*.28,innerHeight*.30,38);
+      setTimeout(()=>burst(innerWidth*.72,innerHeight*.24,42),260);
+      setTimeout(()=>burst(innerWidth*.52,innerHeight*.42,36),520);
+    }
+
+    // Original ambient melody (not a copyrighted birthday tune)
+    let ctx, playing=false, timer=null, seq=0;
+    const chord = [261.63,329.63,392.00,493.88,587.33,659.25,783.99,987.77];
+    function note(freq, t, dur=.8, vol=.028){
+      const osc=ctx.createOscillator(), gain=ctx.createGain();
+      osc.type="sine";osc.frequency.value=freq;
+      gain.gain.setValueAtTime(.0001,t);
+      gain.gain.exponentialRampToValueAtTime(vol,t+.08);
+      gain.gain.exponentialRampToValueAtTime(.0001,t+dur);
+      osc.connect(gain).connect(ctx.destination);osc.start(t);osc.stop(t+dur+.05);
+    }
+    function musicTick(){
+      if(!playing) return;
+      const now=ctx.currentTime+.04;
+      const pattern=[0,2,4,2,1,3,5,3,2,4,6,4,3,5,7,5];
+      const idx=pattern[seq%pattern.length];
+      note(chord[idx],now,.9,.026);
+      if(seq%4===0) note(chord[Math.max(0,idx-2)]/2,now,1.6,.014);
+      seq++;
+    }
+    function toggleMusic(){
+      const AC=window.AudioContext||window.webkitAudioContext;
+      if(!AC) return;
+      ctx=ctx||new AC();
+      playing=!playing;
+      $("#musicBtn").classList.toggle("playing",playing);
+      $("#musicBtn").textContent=playing?"Ⅱ":"♫";
+      if(playing){
+        musicTick();
+        timer=setInterval(musicTick,560);
+      }else{
+        clearInterval(timer);
+      }
+    }
+
+    $("#openBtn").addEventListener("click",()=>{
+      cover.classList.add("hidden");
+      document.body.classList.add("opened");
+      fireworks();
+      toggleMusic();
+    });
+
+    $("#musicBtn").addEventListener("click",toggleMusic);
+    $("#fireBtn").addEventListener("click",fireworks);
+
+    let wished=false;
+    $("#wishBtn").addEventListener("click",()=>{
+      if(wished){fireworks();return;}
+      wished=true;
+      $("#flame").classList.add("out");
+      $("#wishResult").classList.add("show");
+      $("#wishBtn").textContent="愿望已许下 · 再看烟花";
+      setTimeout(fireworks,550);
+    });
+
+    // Share
+    $("#shareBtn").addEventListener("click", async ()=>{
+      const data={title:"致王希羽 · 生日快乐",text:"赵金星送给王希羽的一份生日祝福。",url:location.href};
+      try{
+        if(navigator.share) await navigator.share(data);
+        else{
+          await navigator.clipboard.writeText(location.href);
+          alert("网页链接已复制，可以直接发给王希羽。");
+        }
+      }catch(e){}
+    });
+
+    // QR
+    function isLocal(){
+      return location.protocol==="file:" || location.hostname==="localhost" || location.hostname==="127.0.0.1";
+    }
+    function makeQR(){
+      $("#qrModal").classList.add("show");
+      const holder=$("#qrcode"); holder.innerHTML="";
+      $("#qrText").textContent=isLocal()
+        ?"当前仍是本地文件。部署到 GitHub Pages 后再生成二维码，才可以让别人扫码访问。"
+        :location.href;
+
+      if(window.QRCode){
+        new QRCode(holder,{
+          text:location.href,width:220,height:220,
+          colorDark:"#111111",colorLight:"#ffffff",
+          correctLevel:QRCode.CorrectLevel.H
+        });
+      }else{
+        holder.innerHTML="<p style='color:#918a7a;line-height:1.8'>二维码组件没有加载成功，请刷新页面后重试。</p>";
+      }
+    }
+    $("#qrBtn").addEventListener("click",makeQR);
+    $("#closeQr").addEventListener("click",()=>$("#qrModal").classList.remove("show"));
+    $("#qrModal").addEventListener("click",e=>{if(e.target.id==="qrModal")$("#qrModal").classList.remove("show")});
+    $("#copyLink").addEventListener("click",async()=>{
+      try{await navigator.clipboard.writeText(location.href);alert("网页链接已复制。");}
+      catch(e){prompt("复制这个网页地址：",location.href)}
+    });
+    $("#downloadQr").addEventListener("click",()=>{
+      const canvas=$("#qrcode canvas"), img=$("#qrcode img");
+      let src=canvas?canvas.toDataURL("image/png"):(img?img.src:"");
+      if(!src){alert("请先生成二维码。");return;}
+      const a=document.createElement("a");
+      a.href=src;a.download="王希羽-生日祝福二维码.png";
+      document.body.appendChild(a);a.click();a.remove();
+    });
+
+    // Preserve a graceful experience if someone revisits.
+    if(sessionStorage.getItem("birthday-opened")==="yes"){
+      cover.classList.add("hidden");
+      document.body.classList.add("opened");
+    }
+    $("#openBtn").addEventListener("click",()=>sessionStorage.setItem("birthday-opened","yes"),{once:true});
+  </script>
+</body>
+</html>
