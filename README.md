@@ -1,91 +1,55 @@
-# 致王希羽 · 生辰星礼
+# 致王希羽 · 生辰星礼 V2
 
-这是一个纯静态生日祝福网页，默认内容为：
+一个无需构建工具、可直接部署到 GitHub Pages 的纯静态生日祝福网站。
 
-- 祝福人：赵金星
-- 生日对象：王希羽
-- 风格：深色香槟金 / 高级感 / 星空仪式感
-- 功能：开场启封、艺术字姓名、原创氛围旋律、交互许愿、烟花、网页分享、二维码生成与 PNG 保存
-- 部署目标：GitHub Pages
+## 文件
 
-## GitHub Pages 部署（网页操作版）
+- `index.html`：完整网页（样式、文案、动画、交互均在里面）
+- `.nojekyll`：避免 GitHub Pages 的 Jekyll 处理
 
-### 1. 创建 GitHub 仓库
-登录 GitHub 后点击右上角 `+` → `New repository`。
+## 直接更新你现有的网站
 
-推荐仓库名：
+你的仓库是：
 
-`birthday-for-wang-xiyu`
+`xing-baobao/birthday-for-wang-xiyu`
 
-如果你使用 GitHub 免费账户，请把仓库设为 `Public`，然后创建仓库。
+最快的方法：
 
-### 2. 上传文件
-进入刚创建的仓库：
+1. 打开仓库。
+2. 点进现有的 `index.html`。
+3. 点击右上角铅笔图标（Edit this file），或者删除旧文件后重新上传。
+4. 用本压缩包里的新版 `index.html` 覆盖。
+5. 保留 `.nojekyll`。
+6. Commit changes。
+7. GitHub Pages 会自动更新原网址：
+   `https://xing-baobao.github.io/birthday-for-wang-xiyu/`
 
-`Add file` → `Upload files`
+## 本地预览
 
-把这个压缩包解压后的以下文件上传：
+直接双击 `index.html` 即可预览大部分功能。
 
-- `index.html`
-- `.nojekyll`
+注意：二维码在本地打开时编码的是本地地址，所以请部署到 GitHub Pages 后再生成正式二维码。
 
-然后点击 `Commit changes`。
+## 这版包含
 
-> `README.md` 可以一起上传，也可以不上传。
+- 原封面结构：一封生辰星礼 / TO · 王希羽 / JX ✦ XY / 启封
+- 艺术字与香槟金视觉
+- 珞珈山 / 武大线稿意象
+- 王希羽人物档案
+- 王者荣耀相识时间线
+- 金铲铲“你玩，我不玩”的准确表述
+- 希羽偏爱簿
+- 淡水鱼过敏提醒
+- 兔兔生日签随机互动
+- 22 岁生日祝愿
+- 许愿吹蜡烛
+- 烟花
+- 浏览器实时生成的原创氛围音乐
+- 分享
+- 永久网址二维码与 PNG 保存
+- 手机端响应式排版与中文换行优化
 
-### 3. 开启 GitHub Pages
-进入仓库：
+## 关于二维码
 
-`Settings` → 左侧 `Pages`
-
-在 `Build and deployment` 中：
-
-- `Source` 选择 `Deploy from a branch`
-- `Branch` 选择 `main`
-- 文件夹选择 `/(root)`
-- 点击 `Save`
-
-稍等片刻后，GitHub 会显示你的网站地址。
-
-通常是：
-
-`https://你的GitHub用户名.github.io/birthday-for-wang-xiyu/`
-
-### 4. 打开网页并生成二维码
-先打开上面 GitHub Pages 的公网地址。
-
-滚动到页面最后，点击：
-
-`生成永久二维码`
-
-此时二维码编码的是 GitHub Pages 公网地址。
-
-点击：
-
-`保存二维码 PNG`
-
-就可以把 PNG 发给王希羽，或者打印到贺卡上。
-
-## 二维码会不会过期？
-
-二维码图片本身没有过期时间，它只是保存了一个网址。
-
-只要以下条件持续成立，二维码就可以一直使用：
-
-1. GitHub Pages 页面仍然存在；
-2. 不删除这个仓库；
-3. 不关闭 Pages；
-4. 不修改 GitHub 用户名或仓库名（否则默认网址会变化）。
-
-因此，不要使用会过期的短链接或第三方动态二维码服务，直接把 GitHub Pages 的正式网址做成二维码即可。
-
-## 一个小建议
-
-如果你希望这个二维码很多年以后仍保持原地址，部署后尽量不要：
-
-- 重命名 GitHub 账号；
-- 重命名仓库；
-- 删除仓库；
-- 更换 Pages 发布路径。
-
-GitHub Pages 的默认 `github.io` 地址本身不需要购买域名或每年续费。
+二维码脚本来自 cdnjs 的 `qrcodejs 1.0.0`。
+如果网络暂时无法加载该脚本，只有二维码功能会不可用，网页其他内容与互动仍可正常使用。
