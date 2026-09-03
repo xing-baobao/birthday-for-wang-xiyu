@@ -1,55 +1,34 @@
-# 致王希羽 · 生辰星礼 V2
+# Interactive Birthday Letter
 
-一个无需构建工具、可直接部署到 GitHub Pages 的纯静态生日祝福网站。
+一个单页交互式生日祝福网页，采用深色背景与暖金色视觉体系，强调“实体入口 → 网页启封 → 阅读 → 互动 → 结尾”的完整体验。
 
-## 文件
+## Features
 
-- `index.html`：完整网页（样式、文案、动画、交互均在里面）
-- `.nojekyll`：避免 GitHub Pages 的 Jekyll 处理
+- 沉浸式启封封面与滚动阅读结构
+- 响应式布局，适配手机与桌面浏览器
+- 星点、滚动渐入与烟花动效
+- `prefers-reduced-motion` 动效降级支持
+- Web Audio 氛围音乐，默认自动播放
+- 生日签随机互动与许愿蜡烛
+- Web Share / 链接复制
+- 访问二维码生成与 PNG 保存
+- 基础无障碍优化：键盘焦点、Dialog 语义、Escape 关闭、ARIA 状态
+- `noindex,nofollow,noarchive`，降低被搜索引擎收录的概率
 
-## 直接更新你现有的网站
+## Files
 
-你的仓库是：
+- `index_best.html`：完整页面，可直接作为站点入口使用
+- `README.md`：项目说明
 
-`xing-baobao/birthday-for-wang-xiyu`
+## Deployment
 
-最快的方法：
+可部署到任意静态托管服务。部署后请确认最终访问地址稳定，再将该地址用于实体二维码或分享。
 
-1. 打开仓库。
-2. 点进现有的 `index.html`。
-3. 点击右上角铅笔图标（Edit this file），或者删除旧文件后重新上传。
-4. 用本压缩包里的新版 `index.html` 覆盖。
-5. 保留 `.nojekyll`。
-6. Commit changes。
-7. GitHub Pages 会自动更新原网址：
-   `https://xing-baobao.github.io/birthday-for-wang-xiyu/`
 
-## 本地预览
+## Notes
 
-直接双击 `index.html` 即可预览大部分功能。
-
-注意：二维码在本地打开时编码的是本地地址，所以请部署到 GitHub Pages 后再生成正式二维码。
-
-## 这版包含
-
-- 原封面结构：一封生辰星礼 / TO · 王希羽 / JX ✦ XY / 启封
-- 艺术字与香槟金视觉
-- 珞珈山 / 武大线稿意象
-- 王希羽人物档案
-- 王者荣耀相识时间线
-- 金铲铲“你玩，我不玩”的准确表述
-- 希羽偏爱簿
-- 淡水鱼过敏提醒
-- 兔兔生日签随机互动
-- 22 岁生日祝愿
-- 许愿吹蜡烛
-- 烟花
-- 浏览器实时生成的原创氛围音乐
-- 分享
-- 永久网址二维码与 PNG 保存
-- 手机端响应式排版与中文换行优化
-
-## 关于二维码
-
-二维码脚本来自 cdnjs 的 `qrcodejs 1.0.0`。
-如果网络暂时无法加载该脚本，只有二维码功能会不可用，网页其他内容与互动仍可正常使用。
+- 页面主体无需构建工具，直接使用 HTML / CSS / JavaScript。
+- 二维码功能通过外部 QRCode.js 加载；即使该资源加载失败，其余页面仍可正常使用。
+- 氛围音乐使用 Web Audio API 生成，不依赖音频文件。
+- 建议至少在 iPhone Safari、Android/微信内置浏览器和桌面浏览器各测试一次。
+- README 仅记录项目实现信息，不记录收件人、制作者或双方关系等个人内容。

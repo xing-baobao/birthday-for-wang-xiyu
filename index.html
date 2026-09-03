@@ -4,9 +4,12 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
   <meta name="theme-color" content="#080a10" />
-  <meta name="description" content="赵金星送给王希羽的一份 22 岁生日祝福。" />
+  <meta name="color-scheme" content="dark" />
+  <meta name="robots" content="noindex,nofollow,noarchive" />
+  <meta name="description" content="赵金星为王希羽认真准备的一份 22 岁生日祝福。" />
+  <meta property="og:type" content="website" />
   <meta property="og:title" content="致王希羽 · 一封生辰星礼" />
-  <meta property="og:description" content="有一份来自赵金星的生日祝福，等你亲自启封。" />
+  <meta property="og:description" content="从一块小小的沉金 PCB 开始，藏着一封等王希羽亲自启封的生日祝福。" />
   <title>致王希羽 · 生辰星礼</title>
   <style>
     :root{
@@ -15,7 +18,7 @@
       --ink-3:#121721;
       --paper:#f6efdf;
       --paper-dim:#d6cdbb;
-      --muted:#9b927f;
+      --muted:#aaa18f;
       --gold:#d5b36e;
       --gold-2:#f0daa4;
       --gold-deep:#9b7639;
@@ -42,6 +45,9 @@
       -webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;
     }
     button,input,textarea{font:inherit} button{color:inherit} a{color:inherit}
+    button:focus-visible,a:focus-visible{
+      outline:2px solid var(--gold-2);outline-offset:4px
+    }
     ::selection{background:rgba(213,179,110,.24);color:#fff7e7}
 
     /* ambient layers */
@@ -182,8 +188,9 @@
     }
     .letter p{margin:0 0 1.45em;text-wrap:pretty}
     .letter strong{font-weight:500;color:var(--gold-2)}
+    .letter .salute{color:var(--gold-2);font-family:var(--art);font-size:1.12em;letter-spacing:.08em}
     .signature{margin-top:36px;text-align:right;color:var(--gold-2);font-size:18px}
-    .signature small{display:block;color:#777061;font:11px/1.8 var(--latin);letter-spacing:.2em;margin-top:6px}
+    .signature small{display:block;color:#8d8575;font:11px/1.8 var(--latin);letter-spacing:.2em;margin-top:6px}
 
     /* luojia */
     .luojia{overflow:hidden;background:linear-gradient(180deg,transparent,rgba(255,255,255,.012),transparent)}
@@ -239,7 +246,9 @@
     .story-row:nth-child(odd) .story-dot{grid-column:2}
     .story-kicker{font:11px/1.3 var(--latin);letter-spacing:.2em;color:#766e5f;margin-bottom:11px}
     .story-card h3{font-family:var(--art);font-weight:500;font-size:26px;letter-spacing:.08em;margin:0 0 12px;color:#eee3cc}
-    .story-card p{margin:0;color:#a79e8b;font-size:14px;line-height:1.95;text-wrap:pretty}
+    .story-card p{margin:0;color:#b3aa98;font-size:14px;line-height:1.95;text-wrap:pretty}
+    .story-card p+p{margin-top:.82em}
+    .story-card .soft-strong{color:#e1d4b8}
     .story-quote{
       width:min(700px,100%);margin:50px auto 0;text-align:center;font-family:var(--art);
       font-size:clamp(25px,4vw,38px);line-height:1.75;letter-spacing:.05em;color:#e8dcc3
@@ -256,9 +265,14 @@
     .taste-card:after{
       content:"";position:absolute;right:-42px;bottom:-62px;width:130px;height:130px;border:1px solid rgba(213,179,110,.08);border-radius:50%
     }
-    .taste-no{font:10px/1.2 var(--latin);letter-spacing:.18em;color:#665f53}
+    .taste-no{font:11px/1.2 var(--latin);letter-spacing:.18em;color:#837a69}
     .taste-card h3{font-family:var(--art);font-weight:500;font-size:25px;margin:18px 0 9px;color:#eadfc8;letter-spacing:.06em}
-    .taste-card p{margin:0;color:#9f9684;line-height:1.9;font-size:14px;text-wrap:pretty}
+    .taste-card p{margin:0;color:#aaa18f;line-height:1.9;font-size:14px;text-wrap:pretty}
+    .taste-tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px}
+    .taste-tag{
+      border:1px solid rgba(213,179,110,.14);border-radius:999px;padding:6px 10px;
+      color:#b8ad98;background:rgba(255,255,255,.016);font-size:12px;line-height:1.3
+    }
     .allergy{
       grid-column:1/-1;display:grid;grid-template-columns:110px 1fr;gap:26px;align-items:center;
       border-color:rgba(155,115,111,.32);background:linear-gradient(145deg,rgba(155,115,111,.08),rgba(255,255,255,.012))
@@ -289,7 +303,7 @@
     .gold-btn{
       background:linear-gradient(105deg,#8d6b33,#ead295,#99763b);color:#11141a;border:0;font-weight:700;min-width:220px
     }
-    .fortune-note{font-size:12px;color:#716959;line-height:1.8;margin-top:17px}
+    .fortune-note{font-size:12px;color:#8c8373;line-height:1.8;margin-top:17px}
 
     /* wishes */
     .wish-list{max-width:760px;margin:50px auto 0}
@@ -327,8 +341,11 @@
     .wish-result.show{opacity:1}
 
     /* finale */
-    .finale{min-height:92svh;display:grid;place-items:center;text-align:center;padding-top:130px;padding-bottom:120px}
-    .finale-copy{max-width:740px;margin:auto;color:#c7beac;font-size:clamp(15px,2vw,18px);line-height:2.15}
+    .finale{
+      min-height:96svh;display:grid;place-items:center;text-align:center;padding-top:145px;padding-bottom:135px;
+      background:radial-gradient(circle at 50% 45%,rgba(213,179,110,.055),transparent 34%)
+    }
+    .finale-copy{max-width:720px;margin:auto;color:#cfc5b3;font-size:clamp(15px,2vw,18px);line-height:2.18}
     .finale-copy p{margin:0 0 1.2em;text-wrap:pretty}
     .finale-name{
       font-family:var(--art);font-size:clamp(56px,11vw,116px);font-weight:500;letter-spacing:.13em;text-indent:.13em;
@@ -336,10 +353,11 @@
       -webkit-background-clip:text;background-clip:text;color:transparent;filter:drop-shadow(0 12px 30px rgba(213,179,110,.14))
     }
     .age-mark{font:12px/1.5 var(--latin);letter-spacing:.24em;color:#776e5d;margin-top:10px}
-    .sign-off{font-family:var(--art);font-size:25px;color:var(--gold-2);margin-top:36px}
+    .sign-off{font-family:var(--art);font-size:clamp(25px,4vw,32px);color:var(--gold-2);margin-top:38px}
+    .private-line{color:var(--gold-2);font-weight:500}
     .toolbar{display:flex;gap:10px;flex-wrap:wrap;justify-content:center;margin-top:38px}
     .ghost-btn{font-size:13px;color:#d8cbac;padding:12px 17px}
-    .credit{margin-top:54px;color:#5f594e;font:10px/1.6 var(--latin);letter-spacing:.2em}
+    .credit{margin-top:54px;color:#776f61;font:10px/1.6 var(--latin);letter-spacing:.2em}
 
     /* floating controls + modal */
     .music-fab{
@@ -375,7 +393,7 @@
 
     /* mobile */
     @media (max-width:900px){
-      .section{padding-top:98px;padding-bottom:98px}
+      .section{padding-top:86px;padding-bottom:86px}
       .letter-grid{grid-template-columns:1fr;gap:36px}
       .letter{border-left:0;border-top:1px solid var(--line);padding:34px 0 0;max-width:none}
       .profile-grid{grid-template-columns:1fr}
@@ -387,7 +405,7 @@
       }
     }
     @media (max-width:620px){
-      .section{padding-left:18px;padding-right:18px}
+      .section{padding:76px 18px}
       .chapter{left:18px;top:40px}
       .seal-card{min-height:540px;padding:42px 24px}
       .cover-title{font-size:clamp(34px,10vw,52px);letter-spacing:.11em;text-indent:.11em}
@@ -431,12 +449,12 @@
   <!-- COVER: structure/content intentionally kept close to the original -->
   <div class="cover" id="cover">
     <div class="seal-card">
-      <div class="cover-mark">JINXING · X I Y U</div>
+      <div class="cover-mark">FROM XINGXING · TO TUTU</div>
       <h1 class="cover-title">一封生辰星礼</h1>
       <div class="cover-sub">TO · 王希羽</div>
       <div class="seal">JX<br>✦<br>XY</div>
       <button class="open-btn" id="openBtn">启封这份祝福</button>
-      <div class="cover-verse">有些祝福，适合说出口。<br>有些祝福，值得被认真写下来。</div>
+      <div class="cover-verse">既然你已经扫到了这里，<br>那这份藏起来的祝福，也该正式启封了。</div>
     </div>
   </div>
 
@@ -451,9 +469,9 @@
         <div class="hero-en">HAPPY BIRTHDAY · 09.12</div>
         <div class="hairline"></div>
         <p class="hero-copy">
-          今夜的光落得很慢，像一句准备了很久的话。<br>
-          这一页不谈盛大的词，只认真地祝你——<br>
-          <strong style="color:var(--gold-2);font-weight:500">生日快乐，王希羽。</strong>
+          今天所有普通的光，都可以稍微偏向你一点。<br>
+          既然你已经从那块小小的 PCB 扫到了这里，<br>
+          那就慢慢往下看吧——<strong style="color:var(--gold-2);font-weight:500">生日快乐，王希羽。</strong>
         </p>
         <div class="birthday-chip" id="birthdayChip">22ND BIRTHDAY · WISHES FOR XIYU</div>
       </div>
@@ -466,14 +484,15 @@
       <div class="inner letter-grid">
         <div class="reveal">
           <div class="eyebrow">LETTER · FOR YOU</div>
-          <h2 class="side-title">有些祝福，<br>值得<em>郑重</em>一点。</h2>
+          <h2 class="side-title">有些话，<br>想认真<em>写给你</em>。</h2>
         </div>
         <article class="letter reveal">
-          <p>今夜的光落得很慢。</p>
-          <p>像一句准备了很久的话，终于找到一个恰好的时刻，落在你的名字旁边。</p>
-          <p>所以这一页不谈盛大的词。只想认真地祝你——<strong>生日快乐，王希羽。</strong></p>
-          <p>愿属于你的新一岁，依然有风、有光，有喜欢的事，也有值得期待的人间日常。</p>
-          <div class="signature">—— 赵金星<small>WITH MY BEST WISHES</small></div>
+          <p class="salute">菟菟：</p>
+          <p>做这个页面的时候，我才发现，原来认真准备一份生日礼物，会顺手把很多平时散落在聊天里的小事重新想一遍。</p>
+          <p>我也说不上来为什么不是一句简单的“生日快乐”。大概只是觉得，<strong>你值得我认真准备一次。</strong></p>
+          <p>所以这不是一封想把话说得多漂亮的信，也不是要让你回应什么。只是想趁二十二岁生日，把一句很简单的话放在最前面——<strong>认识你，我真的很开心。</strong></p>
+          <p>愿新的一岁有你想去的方向，也有不必赶路的时候；有实验室里的认真，也有和朋友出去玩、唱歌、吃喜欢的东西时，很轻松的快乐。</p>
+          <div class="signature">—— 赵金星<small>2026 · 09 · 12</small></div>
         </article>
       </div>
     </section>
@@ -482,7 +501,7 @@
     <section class="section luojia">
       <div class="chapter">02 · LUOJIA</div>
       <div class="narrow center reveal">
-        <div class="eyebrow">LUOJIA · LIGHT</div>
+        <div class="eyebrow">A NEW CHAPTER · LUOJIA</div>
         <h2 class="art-title">珞珈有光</h2>
         <div class="mountain-art" aria-hidden="true">
           <svg viewBox="0 0 900 230" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -495,12 +514,11 @@
           </svg>
         </div>
         <div class="prose">
-          <p>山有自己的四季，人也有自己的成长。</p>
-          <p>如今的你，在武汉大学，把生活安放在珞珈山的晨昏之间。</p>
-          <p>也许有赶不完的事情，有需要认真面对的课题，也有一些只有自己才知道的疲惫。</p>
-          <p>可我仍然希望，忙碌没有带走你感受生活的能力。</p>
-          <p>愿你偶尔抬头时，仍然会注意到树影、晚风和天色；愿你走过的那些路，不仅通往更远的地方，也通往一个越来越清晰、越来越喜欢的自己。</p>
-          <p class="gold">珞珈山很大。<br>而属于王希羽的这一段青春，也应该有属于自己的光。</p>
+          <p>认识你的时候，你还在深圳实习。再到现在，研究生生活真正开始，去实验室，也走进了分子流行病这个新的方向。</p>
+          <p>本科双学位、保研、研究生，也许以后还会读博——这些词放在一起，看起来像一条很清楚的路线。可真正生活在里面，大概也会有忙、有累、有变化，还有一些暂时没有答案的事情。</p>
+          <p>所以关于更远的以后，不必急着一次想明白。方向会调整，计划也会变化，但你认真走过的每一步都算数。</p>
+          <p>我更希望你在往前走的时候，别把生活只剩下“应该完成的事”。实验室之外，也要有朋友、有歌、有好吃的东西，有出去玩的时候，也有单纯发呆的空白。</p>
+          <p class="gold">愿你认真向前，也一直保留属于自己的自由和明亮。</p>
         </div>
       </div>
     </section>
@@ -512,13 +530,13 @@
         <div class="center reveal">
           <div class="eyebrow">ABOUT · WANG XIYU</div>
           <h2 class="section-title">关于王希羽</h2>
-          <p class="desc">不是把你写成一张资料卡，而是把那些让“王希羽”成为王希羽的细节，好好放在这里。</p>
+          <p class="desc">资料只能写出几个标签。真正让我记住的，是那些聊天里慢慢留下来的具体小事。</p>
         </div>
         <div class="profile-grid">
           <div class="archive reveal">
             <div class="archive-top">
               <div>
-                <div class="eyebrow" style="margin-bottom:10px">PERSONAL ARCHIVE</div>
+                <div class="eyebrow" style="margin-bottom:10px">A SMALL ARCHIVE</div>
                 <div class="archive-name">王希羽</div>
               </div>
               <div class="rabbit-stamp" aria-label="兔子徽章">
@@ -533,17 +551,18 @@
             <div class="facts">
               <div class="fact"><div class="k">BIRTHDAY</div><div class="v">2004 · 09 · 12</div></div>
               <div class="fact"><div class="k">AGE</div><div class="v">22 · 二十二岁</div></div>
-              <div class="fact"><div class="k">MBTI</div><div class="v">ENTJ</div></div>
               <div class="fact"><div class="k">CAMPUS</div><div class="v">武汉大学 · 研究生</div></div>
-              <div class="fact"><div class="k">FAVORITE</div><div class="v">兔子，以及很多值得认真记住的小偏爱</div></div>
+              <div class="fact"><div class="k">FIELD</div><div class="v">分子流行病方向</div></div>
+              <div class="fact"><div class="k">MBTI</div><div class="v">ENTJ</div></div>
+              <div class="fact"><div class="k">NICKNAME</div><div class="v">菟菟</div></div>
             </div>
           </div>
           <div class="portrait-copy reveal">
             <div class="body">
-              <p>你似乎总有一种很明确的方向感。知道自己喜欢什么，也知道自己想往哪里走。</p>
-              <p>有 ENTJ 的利落、清醒与果断，却又恰好保留着另一面的柔软。</p>
-              <p>会喜欢兔子，会记住好吃的东西，会有自己固定偏爱的咖啡和甜点。</p>
-              <blockquote>有锋芒，也有柔软。<br>有方向，也有可爱。</blockquote>
+              <p>在我看来，你一直是一个很自由、也很明亮的人。开心的时候健谈又开朗，不开心的时候会先自己闷一会儿；看起来很有主意，却也会因为一局游戏没打好，认真想是不是自己拖了后腿。</p>
+              <p>你对朋友也是真的很好。看到我不开心，会偷偷送来墨子的“迪迦奥特曼”皮肤。其实皮肤是什么没有那么重要，重要的是那一刻，有人注意到了：<strong style="color:var(--gold-2);font-weight:500">星星今天好像不太开心。</strong></p>
+              <p>后来知道你是 ENTJ，我会觉得有些地方确实很像你。但比起四个字母，我还是更愿意记住这些具体的小事。</p>
+              <blockquote>有自己的方向，<br>也有照顾别人的温柔。</blockquote>
             </div>
           </div>
         </div>
@@ -557,44 +576,52 @@
         <div class="center reveal">
           <div class="eyebrow">HOW WE MET</div>
           <h2 class="section-title">我们的相遇</h2>
-          <p class="desc">有些人的出现很隆重。有些人的出现，却只是藏在一次再普通不过的偶然里。</p>
+          <p class="desc">从一次“找搭子”开始，后来慢慢有了游戏之外的很多话。关系变近，好像从来没有一个特别明确的瞬间。</p>
         </div>
         <div class="story-wrap">
           <div class="story-line"></div>
+
           <div class="story-row reveal">
             <div class="story-card">
-              <div class="story-kicker">START · 王者荣耀</div>
-              <h3>“找搭子”</h3>
-              <p>没有电影里的慢镜头。只是一次普通的匹配、开麦、组队，本来都只是再普通不过的小事。</p>
+              <div class="story-kicker">2025 · 10 · 19</div>
+              <h3>中路遇见辅助</h3>
+              <p>王者荣耀排位里的“找搭子”。第一局用了什么英雄、第一次到底有没有开麦，现在都已经记不清了。</p>
+              <p>只记得你说话很温柔，声音也是软软的。那晚打完加了微信，当时大概谁也没想到，这个好友后来会一直留到今天。</p>
             </div>
             <div class="story-dot">01</div>
           </div>
+
           <div class="story-row reveal">
             <div class="story-dot">02</div>
             <div class="story-card">
-              <div class="story-kicker">THEN · 慢慢记住</div>
-              <h3>从队友，到特别的人</h3>
-              <p>有些相遇最有意思的地方，就在于你一开始并不知道，这个人后来会被你记住。</p>
+              <div class="story-kicker">GAME DAYS · 输赢之外</div>
+              <h3>比起输赢，更在意一起玩</h3>
+              <p>你常玩辅助保护我，我比较喜欢指挥；你喜欢公孙离，讨厌司空震。我们都有菜的时候，输了也都会不开心。</p>
+              <p>你有时会觉得是自己没打好、拖了后腿。可我好像一直没太在意这些——<span class="soft-strong">比起结果，我更在意那一局是不是和你一起玩的。</span></p>
             </div>
           </div>
+
           <div class="story-row reveal">
             <div class="story-card">
-              <div class="story-kicker">HER WORLD · 金铲铲</div>
-              <h3>你玩，我不玩</h3>
-              <p>我可能不会研究阵容与羁绊，但这并不妨碍我知道：这是你喜欢的东西。</p>
+              <div class="story-kicker">FROM GAME TO LIFE</div>
+              <h3>从课表，聊到生活</h3>
+              <p>最开始只是约着打游戏，后来时间总碰不上，就聊起了课表。再后来，学校、吃的、电竞、娱乐圈、朋友、未来、工作，还有很多没什么要紧的碎碎念，都慢慢成了聊天的内容。</p>
+              <p>看到好看的东西，会想拍下来给你看看；吃到什么，也会顺手想和你分享。原来一个游戏搭子，真的会一点一点走进游戏之外的生活里。</p>
             </div>
             <div class="story-dot">03</div>
           </div>
+
           <div class="story-row reveal">
             <div class="story-dot">04</div>
             <div class="story-card">
-              <div class="story-kicker">TODAY · 09.12</div>
-              <h3>认真写下这一页</h3>
-              <p>从一局游戏里的队友，到如今认真准备这份生日祝福。回头看，好像也算一件很奇妙的事情。</p>
+              <div class="story-kicker">ONE SENTENCE · 我一直记得</div>
+              <h3>“最好的网友，没有之一”</h3>
+              <p>当然，也有过没把话说明白的时候。有一次我到第二天才说，其实前一天有点不高兴。你认真解释、道歉，也问我还需要怎样补救。</p>
+              <p>后来你说，我是你“最好的网友，没有之一”。<span class="soft-strong">这句话，我一直有认真记着。</span></p>
             </div>
           </div>
         </div>
-        <div class="story-quote reveal">毕竟王者峡谷那么多人。<br><b>偏偏遇见的是你。</b></div>
+        <div class="story-quote reveal">王者峡谷每天都会遇见很多人。<br><b>可那一天，偏偏遇见的是你。</b></div>
       </div>
     </section>
 
@@ -603,41 +630,59 @@
       <div class="chapter">05 · FAVORITES</div>
       <div class="inner">
         <div class="center reveal">
-          <div class="eyebrow">XIYU'S FAVORITES</div>
-          <h2 class="art-title">希羽偏爱簿</h2>
-          <p class="desc">世界上的好吃的有很多。但一个人的偏爱，会让一些普通的名字变得格外有辨识度。</p>
+          <div class="eyebrow">THINGS I REMEMBER</div>
+          <h2 class="art-title">星星备忘录</h2>
+          <p class="desc">不是为了把你总结成一张清单。只是有些随口说过的小偏爱，听着听着，就真的记住了。</p>
         </div>
         <div class="taste-grid">
           <div class="taste-card reveal">
-            <div class="taste-no">01 · SAVORY</div><h3>肉松</h3>
-            <p>好像只要出现“肉松”两个字，就已经比普通选项多了一点胜算。</p>
+            <div class="taste-no">01 · A LITTLE MORE ROUSONG</div>
+            <h3>肉松，会加分</h3>
+            <p>煎饼喜欢加肉松；看到“肉松”两个字，好像就可以先多一点期待。</p>
+            <div class="taste-tags"><span class="taste-tag">肉松</span><span class="taste-tag">煎饼 + 肉松</span></div>
           </div>
+
           <div class="taste-card reveal">
-            <div class="taste-no">02 · NAYUKI</div><h3>松松咸蛋黄嘟嘟</h3>
-            <p>名字很长。但属于那种，看到就应该想到你的长。</p>
+            <div class="taste-no">02 · COFFEE</div>
+            <h3>瑞幸 · 苹果美式</h3>
+            <p>记住一个人的咖啡，比只记得“她喜欢咖啡”具体得多。所以下次再问喝什么，至少可以少一道选择题。</p>
+            <div class="taste-tags"><span class="taste-tag">苹果美式</span><span class="taste-tag">喜欢吃辣</span></div>
           </div>
+
           <div class="taste-card reveal">
-            <div class="taste-no">03 · COFFEE</div><h3>瑞幸 · 苹果美式</h3>
-            <p>咖啡负责清醒，苹果负责给清醒里添一点特别。利落，却不无趣。</p>
+            <div class="taste-no">03 · DISHES</div>
+            <h3>餐桌上的偏爱</h3>
+            <p>丝瓜炒鸡蛋、糖醋排骨。都是很日常的名字，但因为是你喜欢的，就变成了值得记住的答案。</p>
+            <div class="taste-tags"><span class="taste-tag">丝瓜炒鸡蛋</span><span class="taste-tag">糖醋排骨</span></div>
           </div>
+
           <div class="taste-card reveal">
-            <div class="taste-no">04 · JIUSAUUCE</div><h3>奶酪烤饼 · 塔可</h3>
-            <p>有时候快乐并不复杂，也可能只是外卖送到，打开包装以后发现：今天点的东西很好吃。</p>
+            <div class="taste-no">04 · SWEET & TAKEAWAY</div>
+            <h3>甜一点，也可以</h3>
+            <p>松松咸蛋黄嘟嘟、榴莲千层，还有 JIUSAUUCE 的奶酪烤饼和塔可。下次再问想吃什么，应该也不至于完全没有方向。</p>
+            <div class="taste-tags"><span class="taste-tag">榴莲千层</span><span class="taste-tag">JIUSAUUCE</span></div>
           </div>
+
           <div class="taste-card reveal">
-            <div class="taste-no">05 · DESSERT</div><h3>榴莲千层</h3>
-            <p>甜品存在的意义，大概就是让一个普通的日子，突然多出一点值得高兴的理由。</p>
+            <div class="taste-no">05 · GAME & ESPORTS</div>
+            <h3>公孙离，以及钎城</h3>
+            <p>喜欢公孙离，也喜欢 DYG，因为喜欢钎城。至于司空震——这个名字最好还是离今天的生日页面远一点。</p>
+            <div class="taste-tags"><span class="taste-tag">公孙离</span><span class="taste-tag">DYG</span><span class="taste-tag">钎城</span><span class="taste-tag">司空震 · 黑名单</span></div>
           </div>
+
           <div class="taste-card reveal">
-            <div class="taste-no">06 · FAVORITE DISH</div><h3>糖醋排骨</h3>
-            <p>如果一张餐桌上有很多菜，有一道大概不需要问。真正喜欢的东西，总会被记得更清楚。</p>
+            <div class="taste-no">06 · LITTLE THINGS</div>
+            <h3>粉色、唱歌，还有一些“不喜欢”</h3>
+            <p>喜欢粉色，也挺喜欢唱歌；不太爱吃米饭和主食，不喜欢戴围巾，也不喜欢留短头发。喜欢和不喜欢，都是一个人很具体的轮廓。</p>
+            <div class="taste-tags"><span class="taste-tag">粉色</span><span class="taste-tag">唱歌</span><span class="taste-tag">不爱主食</span><span class="taste-tag">不喜欢围巾</span></div>
           </div>
+
           <div class="taste-card allergy reveal">
             <div class="allergy-mark">!</div>
             <div>
-              <div class="taste-no">A SMALL THING TO REMEMBER</div>
-              <h3>淡水鱼要避开</h3>
-              <p>不是所有“记得”都需要很浪漫。有时候真正重要的，反而就是这些很具体、很细小的事：喜欢什么，什么会让你开心，什么需要替你留心。</p>
+              <div class="taste-no">THE ONE THING TO REMEMBER</div>
+              <h3>淡水鱼过敏</h3>
+              <p>这个不是“偏好”，而是一定要认真记住的事。喜欢什么很可爱，不能吃什么更重要——以后碰到淡水鱼，记得直接避开。</p>
             </div>
           </div>
         </div>
@@ -652,7 +697,7 @@
         <div class="center reveal">
           <div class="eyebrow">TODAY'S RABBIT NOTE</div>
           <h2 class="section-title">兔兔生日签</h2>
-          <p class="desc">喜欢兔子的人，生日当然应该收到一点来自兔兔世界的特殊祝福。</p>
+          <p class="desc">既然你喜欢兔子——虽然你本人对兔子的评价里还包括“好吃”——那生日签还是得由兔兔来送。</p>
         </div>
         <div class="fortune-box reveal">
           <div class="big-rabbit" aria-hidden="true">
@@ -664,10 +709,10 @@
               <path d="M39 76L18 72M40 82L20 85M81 76L102 72M80 82L100 85" stroke="rgba(213,179,110,.55)" stroke-width="1.4" stroke-linecap="round"/>
             </svg>
           </div>
-          <div class="eyebrow" style="margin-bottom:8px">FOR WANG XIYU · 09.12</div>
-          <div class="fortune-text" id="fortuneText">今天的好运，会比平时更偏爱王希羽一点。</div>
+          <div class="eyebrow" style="margin-bottom:8px">FOR TUTU · 09.12</div>
+          <div class="fortune-text" id="fortuneText" aria-live="polite">今天的好运，会比平时更偏爱王希羽一点。</div>
           <button class="gold-btn" id="fortuneBtn">抽一枚属于你的生日签</button>
-          <div class="fortune-note">每一次点击，都是一只兔子偷偷塞进来的小小祝福。</div>
+          <div class="fortune-note">本兔郑重声明：今天只负责送祝福，不负责讨论好不好吃。</div>
         </div>
       </div>
     </section>
@@ -681,11 +726,11 @@
           <h2 class="art-title">这一岁，愿你</h2>
         </div>
         <div class="wish-list">
-          <div class="wish-line reveal"><div class="wish-num">01</div><div class="wish-copy">愿你仍然有清晰的方向，也拥有<strong>不必时时赶路的从容</strong>。</div></div>
-          <div class="wish-line reveal"><div class="wish-num">02</div><div class="wish-copy">愿努力都有回声，认真都有意义。愿珞珈山的春花、夏荫、秋风与冬雪，都替你记住这一段年轻的时光。</div></div>
-          <div class="wish-line reveal"><div class="wish-num">03</div><div class="wish-copy">愿你喜欢的咖啡依旧好喝，喜欢的东西依旧值得期待；游戏里遇到靠谱队友，金铲铲少一点离谱发牌。</div></div>
-          <div class="wish-line reveal"><div class="wish-num">04</div><div class="wish-copy">愿每一次想吃榴莲千层的时候，刚好都有人陪你分享；糖醋排骨端上桌时，第一筷永远是最好吃的那一块。</div></div>
-          <div class="wish-line reveal"><div class="wish-num">05</div><div class="wish-copy">也愿这个世界，在很多你没有提前预料到的地方，<strong>悄悄给你一点惊喜</strong>。</div></div>
+          <div class="wish-line reveal"><div class="wish-num">01</div><div class="wish-copy">愿刚开始的研究生生活，慢慢长成你喜欢的样子。实验室里的认真有结果，忙碌之外也一直有<strong>属于自己的时间</strong>。</div></div>
+          <div class="wish-line reveal"><div class="wish-num">02</div><div class="wish-copy">愿未来读博也好、方向有变化也好，你都不用因为“应该怎样”而着急。二十二岁可以有计划，也完全可以保留一些还没有答案的地方。</div></div>
+          <div class="wish-line reveal"><div class="wish-num">03</div><div class="wish-copy">愿你继续有很多好朋友一起出去玩，有喜欢的歌可以唱，有想吃的东西就去吃；开心的时候大大方方地开心，不开心的时候也总有人愿意听你说。</div></div>
+          <div class="wish-line reveal"><div class="wish-num">04</div><div class="wish-copy">愿游戏里公孙离手感在线，司空震少一点；喜欢的选手和战队有值得高兴的消息，喜欢的咖啡和甜品也总在想吃的时候刚刚好。</div></div>
+          <div class="wish-line reveal"><div class="wish-num">05</div><div class="wish-copy">最重要的是，愿二十二岁的王希羽继续<strong>自由、明亮，也按照自己喜欢的方式生活</strong>。</div></div>
         </div>
       </div>
     </section>
@@ -697,48 +742,57 @@
         <div class="eyebrow">ONE PRIVATE WISH</div>
         <h2 class="section-title">这一刻，留给你的愿望</h2>
         <div class="candle"><div class="flame" id="flame"></div></div>
-        <p class="ritual-copy">在心里默念一个愿望，然后按下按钮。<br>不必告诉任何人——愿它在未来某一天，悄悄实现。</p>
+        <p class="ritual-copy">这个愿望不用写在页面里，也不用告诉任何人。<br>在心里默念一下，然后把蜡烛吹灭——剩下的，交给未来。</p>
         <button class="gold-btn" id="wishBtn">许愿 · 吹灭蜡烛</button>
-        <div class="wish-result" id="wishResult">愿望已被星光收藏 ✦</div>
+        <div class="wish-result" id="wishResult" aria-live="polite">愿望已被星光收藏 ✦</div>
       </div>
     </section>
 
     <!-- 10 FINALE -->
     <section class="section finale">
       <div class="inner reveal">
-        <div class="eyebrow">ON THIS SPECIAL DAY</div>
+        <div class="eyebrow">FROM XINGXING · TO TUTU</div>
         <div class="finale-copy">
-          <p>生日其实只是日历上的一天。可因为这一天属于某个人，它才变得值得认真对待。</p>
-          <p>所以在 <strong style="color:var(--gold-2);font-weight:500">09 月 12 日</strong> 到来的时候，希望你知道：有人记得你的生日，也记得你的很多小小偏爱。</p>
-          <p>记得你喜欢兔子，记得苹果美式，记得肉松和榴莲千层；也记得故事最开始的地方——那一次王者荣耀里的“找搭子”。</p>
-          <p>人与人之间的相遇总有一点无法解释的偶然。而能够从那一次偶然开始，一路认识到今天，本身就已经是一件很值得珍惜的事情。</p>
+          <p>从 2025 年 10 月 19 日到今天，好像已经发生了很多事。</p>
+          <p>最开始真的没有想过那么远。只是在王者荣耀里找了一个搭子，中路遇见辅助，打完游戏加了微信。甚至第一局玩的什么英雄、第一次有没有开麦，现在都已经记不清了。</p>
+          <p>可后来却慢慢记住了很多别的东西。记住你喜欢什么、不喜欢什么；记住你喜欢公孙离、讨厌司空震；记住一些聊天里随口提过的小事，也记住了很多游戏之外的你。</p>
+          <p>从“今天打不打”，到后来学校、生活、朋友、未来，还有那些其实没什么重要内容的碎碎念。</p>
+          <p>有一次你说，我是你“最好的网友，没有之一”。<br><span class="private-line">这句话，我其实一直有认真记着。</span></p>
+          <p>所以做这份生日礼物的时候，我也没有想过一定要写出多么漂亮的话。</p>
+          <p class="private-line">我只是觉得——菟菟值得被认真准备一次。</p>
+          <p>认识你，我真的很开心。</p>
+          <p>我不知道以后会发生什么，也不急着知道。<br><span class="private-line">至少现在能够遇见你，那就挺好的。</span></p>
         </div>
+
         <div class="finale-name">生日快乐</div>
         <div class="age-mark">WANG XIYU · 22ND BIRTHDAY · 2026</div>
+
         <div class="finale-copy" style="margin-top:34px">
-          <p>愿你的二十二岁，比二十一岁更自由，更笃定，也更明亮。</p>
-          <p>愿你一路向前的时候有风，回头的时候有灯；而所有你认真期待过的事情，最终都能慢慢来到你的身边。</p>
+          <p>希望新的一岁，你还是自由、明亮，会和喜欢的人出去玩，会唱喜欢的歌，会吃很多喜欢的东西，也会继续往自己想去的地方走。</p>
+          <p>至于今天——<strong style="color:var(--gold-2);font-weight:500">开心最大。</strong></p>
         </div>
-        <div class="sign-off">愿岁岁有欢喜，也愿你始终是你。</div>
+
+        <div class="sign-off">王希羽，二十二岁生日快乐。</div>
         <div class="hairline"></div>
-        <p style="color:#a69d8a;line-height:2">—— 赵金星<br><span style="font:10px/1.6 var(--latin);letter-spacing:.22em;color:#6e6759">HAPPY BIRTHDAY · WITH ALL MY WISHES</span></p>
+        <p style="color:#b0a693;line-height:2">—— 星星<br><span style="font:10px/1.6 var(--latin);letter-spacing:.22em;color:#81786a">2026 · 09 · 12</span></p>
+
         <div class="toolbar">
           <button class="ghost-btn" id="fireBtn">✦ 再看一次烟花</button>
           <button class="ghost-btn" id="shareBtn">↗ 分享这一页星光</button>
-          <button class="ghost-btn" id="qrBtn">▦ 生成永久二维码</button>
+          <button class="ghost-btn" id="qrBtn">▦ 生成访问二维码</button>
         </div>
-        <div class="credit">JINXING FOR XIYU · MADE WITH WARM WISHES</div>
+        <div class="credit">XINGXING FOR TUTU · MADE WITH CARE</div>
       </div>
     </section>
   </main>
 
-  <button class="music-fab" id="musicBtn" aria-label="播放或暂停氛围音乐">♫</button>
+  <button class="music-fab" id="musicBtn" aria-label="播放氛围音乐" aria-pressed="false" title="播放氛围音乐">♫</button>
 
-  <div class="modal" id="qrModal">
-    <div class="modal-card">
-      <button class="close" id="closeQr" aria-label="关闭">×</button>
-      <div class="eyebrow">PRIVATE BIRTHDAY LINK</div>
-      <div class="qr-title">扫码进入这份祝福</div>
+  <div class="modal" id="qrModal" role="dialog" aria-modal="true" aria-hidden="true" aria-labelledby="qrTitle">
+    <div class="modal-card" tabindex="-1">
+      <button class="close" id="closeQr" aria-label="关闭二维码弹窗">×</button>
+      <div class="eyebrow">BIRTHDAY LINK</div>
+      <div class="qr-title" id="qrTitle">扫码进入这份祝福</div>
       <div id="qrcode"></div>
       <div class="qr-note" id="qrText"></div>
       <div class="modal-actions">
@@ -756,7 +810,8 @@
 
     // Stars
     const stars = $("#stars");
-    for(let i=0;i<96;i++){
+    const starCount = innerWidth < 620 ? 58 : 84;
+    for(let i=0;i<starCount;i++){
       const s=document.createElement("i");
       s.className="star";
       s.style.left=Math.random()*100+"%";
@@ -804,7 +859,7 @@
       setTimeout(()=>burst(innerWidth*.52,innerHeight*.43,38),520);
     }
 
-    // Original ambient WebAudio melody — no audio file required.
+    // Ambient WebAudio melody — starts from the user's "启封" tap for iOS Safari compatibility.
     let ctx,playing=false,timer=null,seq=0;
     const chord=[261.63,329.63,392.00,493.88,587.33,659.25,783.99,987.77];
     function note(freq,t,dur=.9,vol=.022){
@@ -824,30 +879,54 @@
       if(seq%4===0)note(chord[Math.max(0,idx-2)]/2,now,1.7,.012);
       seq++;
     }
-    function toggleMusic(){
+    function syncMusicButton(){
+      const btn=$("#musicBtn");
+      btn.classList.toggle("playing",playing);
+      btn.textContent=playing?"Ⅱ":"♫";
+      btn.setAttribute("aria-pressed",String(playing));
+      btn.setAttribute("aria-label",playing?"暂停氛围音乐":"播放氛围音乐");
+      btn.title=playing?"暂停氛围音乐":"播放氛围音乐";
+    }
+    function startMusic(){
       const AC=window.AudioContext||window.webkitAudioContext;
-      if(!AC)return;
+      if(!AC||playing)return;
       ctx=ctx||new AC();
-      playing=!playing;
-      $("#musicBtn").classList.toggle("playing",playing);
-      $("#musicBtn").textContent=playing?"Ⅱ":"♫";
-      if(playing){musicTick();timer=setInterval(musicTick,590)}
-      else{clearInterval(timer)}
+
+      // iOS Safari requires audio to be unlocked from a real user gesture.
+      // This function is called directly inside the "启封" click handler.
+      if(ctx.state==="suspended" && ctx.resume) ctx.resume();
+
+      playing=true;
+      syncMusicButton();
+      musicTick();
+      clearInterval(timer);
+      timer=setInterval(musicTick,590);
+    }
+    function stopMusic(){
+      playing=false;
+      clearInterval(timer);
+      timer=null;
+      syncMusicButton();
+    }
+    function toggleMusic(){
+      if(playing) stopMusic();
+      else startMusic();
     }
 
     // Cover
     const cover=$("#cover");
     $("#openBtn").addEventListener("click",()=>{
+      // Start audio first, while this handler is still inside the user's tap.
+      // This is substantially more reliable on iPhone/iOS Safari than true page-load autoplay.
+      startMusic();
       cover.classList.add("hidden");
       document.body.classList.add("opened");
-      sessionStorage.setItem("birthday-opened","yes");
       fireworks();
-      toggleMusic();
       setTimeout(()=>$(".hero .reveal")?.classList.add("in"),180);
     });
-    if(sessionStorage.getItem("birthday-opened")==="yes"){
-      cover.classList.add("hidden");document.body.classList.add("opened");
-    }
+
+    // Always show the cover after a fresh load so iOS gets a user gesture
+    // before Web Audio starts. Refreshing the page therefore returns to "启封".
     $("#musicBtn").addEventListener("click",toggleMusic);
 
     // Birthday chip: 2026-09-12, local date, no awkward timezone dependency.
@@ -868,15 +947,15 @@
     // Rabbit fortune
     const fortunes=[
       "今天的好运，会比平时更偏爱王希羽一点。",
-      "愿你所愿，都有光落下来。",
-      "愿你走过的路都有答案，想见的风景都不会错过。",
-      "愿这一岁的你，忙时有方向，闲时有快乐。",
-      "愿珞珈的风替你吹散疲惫，也把好运吹到身边。",
-      "愿喜欢的咖啡一直好喝，期待的消息都如约而至。",
-      "愿你保持锋芒，也永远保留喜欢兔子的柔软。",
-      "愿游戏里有靠谱队友，生活里也总有人与你并肩。",
-      "愿每一次认真，都慢慢长成你想要的答案。",
-      "愿二十二岁的王希羽，自由、笃定，也闪闪发光。"
+      "愿刚开始的研究生生活，有收获，也有喘气的空白。",
+      "愿实验室里的认真慢慢有答案，生活里的快乐也从不缺席。",
+      "愿公孙离手感在线，司空震今天识趣一点。",
+      "愿喜欢的选手和战队，总有值得你开心的消息。",
+      "愿苹果美式好喝，榴莲千层好吃，想吃辣的时候刚好够辣。",
+      "愿你和喜欢的人出去玩时，总能留下很多好看的照片。",
+      "愿你想唱歌的时候就唱，想休息的时候也不用觉得浪费时间。",
+      "愿二十二岁的你，自由、明亮，也越来越喜欢自己的生活。",
+      "愿今天的菟菟，只负责开心。"
     ];
     let fortuneIndex=0;
     $("#fortuneBtn").addEventListener("click",()=>{
@@ -901,7 +980,7 @@
 
     // Share
     $("#shareBtn").addEventListener("click",async()=>{
-      const data={title:"致王希羽 · 生日快乐",text:"赵金星送给王希羽的一份生日祝福。",url:location.href};
+      const data={title:"致王希羽 · 生日快乐",text:"一份认真准备的 22 岁生日祝福。",url:location.href};
       try{
         if(navigator.share)await navigator.share(data);
         else{
@@ -915,8 +994,22 @@
     function isLocal(){
       return location.protocol==="file:"||location.hostname==="localhost"||location.hostname==="127.0.0.1";
     }
+    let lastModalTrigger=null;
+    function openQrModal(){
+      const modal=$("#qrModal");
+      lastModalTrigger=document.activeElement;
+      modal.classList.add("show");
+      modal.setAttribute("aria-hidden","false");
+      setTimeout(()=>$("#closeQr").focus(),30);
+    }
+    function closeQrModal(){
+      const modal=$("#qrModal");
+      modal.classList.remove("show");
+      modal.setAttribute("aria-hidden","true");
+      lastModalTrigger?.focus?.();
+    }
     function makeQR(){
-      $("#qrModal").classList.add("show");
+      openQrModal();
       const holder=$("#qrcode");holder.innerHTML="";
       $("#qrText").textContent=isLocal()
         ?"当前是本地文件。部署到 GitHub Pages 后再生成二维码，别人扫码才可以访问。"
@@ -924,12 +1017,13 @@
       if(window.QRCode){
         new QRCode(holder,{text:location.href,width:220,height:220,colorDark:"#111111",colorLight:"#ffffff",correctLevel:QRCode.CorrectLevel.H});
       }else{
-        holder.innerHTML="<p style='color:#918a7a;line-height:1.8'>二维码组件未加载。页面其他功能不受影响；联网刷新后再试即可。</p>";
+        holder.innerHTML="<p style='color:#a49b89;line-height:1.8'>二维码组件未加载。页面其他功能不受影响；联网刷新后再试即可。</p>";
       }
     }
     $("#qrBtn").addEventListener("click",makeQR);
-    $("#closeQr").addEventListener("click",()=>$("#qrModal").classList.remove("show"));
-    $("#qrModal").addEventListener("click",e=>{if(e.target.id==="qrModal")$("#qrModal").classList.remove("show")});
+    $("#closeQr").addEventListener("click",closeQrModal);
+    $("#qrModal").addEventListener("click",e=>{if(e.target.id==="qrModal")closeQrModal()});
+    document.addEventListener("keydown",e=>{if(e.key==="Escape"&&$("#qrModal").classList.contains("show"))closeQrModal()});
     $("#copyLink").addEventListener("click",async()=>{
       try{await navigator.clipboard.writeText(location.href);alert("网页链接已复制。")}
       catch(e){prompt("复制这个网页地址：",location.href)}
