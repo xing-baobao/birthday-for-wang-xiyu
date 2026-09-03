@@ -67,6 +67,17 @@
     /* reusable */
     .page{position:relative;z-index:2;opacity:0;transition:opacity 1s ease}
     body.opened .page{opacity:1}
+
+    /* While the cover is sealed, the page underneath must not be scrollable. */
+    body:not(.opened){
+      position:fixed;
+      inset:0;
+      width:100%;
+      height:100%;
+      overflow:hidden;
+      overscroll-behavior:none;
+    }
+
     .section{position:relative;padding:118px 22px}
     .inner{width:min(1080px,100%);margin:auto}
     .narrow{width:min(790px,100%);margin:auto}
@@ -778,8 +789,8 @@
 
         <div class="toolbar">
           <button class="ghost-btn" id="fireBtn">✦ 再看一次烟花</button>
-          <button class="ghost-btn" id="shareBtn">↗ 分享这一页星光</button>
-          <button class="ghost-btn" id="qrBtn">▦ 生成访问二维码</button>
+          <button class="ghost-btn" id="shareBtn" hidden>↗ 分享这一页星光</button>
+          <button class="ghost-btn" id="qrBtn" hidden>▦ 生成访问二维码</button>
         </div>
         <div class="credit">XINGXING FOR TUTU · MADE WITH CARE</div>
       </div>
@@ -807,6 +818,23 @@
   <script>
     const $ = s => document.querySelector(s);
     const $$ = s => [...document.querySelectorAll(s)];
+
+    // A fresh visit must always begin at the sealed cover / top of the page.
+    if("scrollRestoration" in history) history.scrollRestoration="manual";
+
+    function resetSealedScroll(){
+      if(document.body.classList.contains("opened")) return;
+      const root=document.documentElement;
+      const oldBehavior=root.style.scrollBehavior;
+      root.style.scrollBehavior="auto";
+      window.scrollTo(0,0);
+      root.scrollTop=0;
+      document.body.scrollTop=0;
+      root.style.scrollBehavior=oldBehavior;
+    }
+
+    resetSealedScroll();
+    window.addEventListener("pageshow",resetSealedScroll);
 
     // Stars
     const stars = $("#stars");
@@ -916,11 +944,30 @@
     // Cover
     const cover=$("#cover");
     $("#openBtn").addEventListener("click",()=>{
-      // Start audio first, while this handler is still inside the user's tap.
-      // This is substantially more reliable on iPhone/iOS Safari than true page-load autoplay.
+      // Start audio first while this handler is still inside the user's tap.
+      // This keeps iPhone/iOS Safari audio unlocking reliable.
       startMusic();
-      cover.classList.add("hidden");
+
+      // Always begin the actual letter from the very top, even if the browser
+      // tried to restore an old scroll position before the cover was opened.
+      const root=document.documentElement;
+      const oldBehavior=root.style.scrollBehavior;
+      root.style.scrollBehavior="auto";
+      window.scrollTo(0,0);
+      root.scrollTop=0;
+      document.body.scrollTop=0;
+
       document.body.classList.add("opened");
+      cover.classList.add("hidden");
+
+      // Re-assert the top position after layout unlocks, then restore smooth scrolling.
+      requestAnimationFrame(()=>{
+        window.scrollTo(0,0);
+        root.scrollTop=0;
+        document.body.scrollTop=0;
+        root.style.scrollBehavior=oldBehavior;
+      });
+
       fireworks();
       setTimeout(()=>$(".hero .reveal")?.classList.add("in"),180);
     });
